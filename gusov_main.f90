@@ -229,7 +229,7 @@ write(2,'(/," Oklop:")')
 write(2,'(" Duljina donje stranice pravokutnog oklopa .......................: ",f8.2," (mm)")') Du
 write(2,'(" Duljina bocne stranice pravokutnog oklopa .......................: ",f8.2," (mm)")') Ho
 if (tip==1) then
-	write(2,'(" Razmak medju stranicama faza pravokutnog oklopa .................: ",f8.2," (mm)")') Hx
+    write(2,'(" Razmak medju stranicama faza pravokutnog oklopa .................: ",f8.2," (mm)")') Hx
 end if
 write(2,'(" Broj podjela donje stranice oklopa na dione vodice ..............: ",i4)') N1
 write(2,'(" Broj podjela bocne stranice oklopa na dione vodice ..............: ",i4)') N2
@@ -308,39 +308,39 @@ Nu = 3*Ni            !Ukupni broj dionih vodica svih faza
 x(1) = Xp + a/2.
 y(1) = Yp + b/2.
 do i = 2,Nb
-	x(i) = x(i-1)
-	y(i) = y(i-1) + b
+    x(i) = x(i-1)
+    y(i) = y(i-1) + b
 end do
 do k = 1,Na-1
-	m = k*Nb + 1
-	n = (k+1)*Nb
-	do i = m,n
-		x(i) = x(i-Nb) + a
-		y(i) = y(i-Nb)
-	end do
+    m = k*Nb + 1
+    n = (k+1)*Nb
+    do i = m,n
+        x(i) = x(i-Nb) + a
+        y(i) = y(i-Nb)
+    end do
 end do
 ! =================================================
 ! Formiranje liste koordinata dionih vodica faze L2
 ! =================================================
 delta = Dx+La
 do i = Ni+1,2*Ni
-	x(i) = x(i-Ni) + delta
-	y(i) = y(i-Ni)
+    x(i) = x(i-Ni) + delta
+    y(i) = y(i-Ni)
 end do
 ! =================================================
 ! Formiranje liste koordinata dionih vodica faze L3
 ! =================================================
 do i = 2*Ni+1,3*Ni
-	x(i) = x(i-Ni) + delta
-	y(i) = y(i-Ni)
+    x(i) = x(i-Ni) + delta
+    y(i) = y(i-Ni)
 end do
 
 ! =================================
 ! Izracun otpora dionih vodica faza
 ! =================================
 do i = 1,Nu
-	Sp = a*b
-	Rp(i) = L/(kapav*Sp)
+    Sp = a*b
+    Rp(i) = L/(kapav*Sp)
 end do
 
 
@@ -349,9 +349,9 @@ end do
 ! ***************************************
 write(2,'(" Broj dionih vodica faza ...................:",i4)') Nu
 if (tip==1) then
-	write(2,'(" Broj dionih vodica oklopa .................:",i4)') 2*N1 + 4*N2 + 4
+    write(2,'(" Broj dionih vodica oklopa .................:",i4)') 2*N1 + 4*N2 + 4
 else if (tip==2) then
-	write(2,'(" Broj dionih vodica oklopa .................:",i4)') 2*N1 + 2*N2 + 4
+    write(2,'(" Broj dionih vodica oklopa .................:",i4)') 2*N1 + 2*N2 + 4
 end if
 write(2,'(" Ukupni broj svih dionih vodica ............:",i4)') Nuk
 write(2,'(" Duljina stranice (a) dionog vodica faze ...:",f8.2," (mm)")') a*1.e3
@@ -372,8 +372,8 @@ y(k) = Yo + h/2.
 
 ! Donja stranica oklopa - od lijevo prema desno
 do i = k+1,N1+k
-	x(i) = x(i-1) + aa
-	y(i) = y(k)
+    x(i) = x(i-1) + aa
+    y(i) = y(k)
 end do
 
 ! Donji desni kut oklopa
@@ -387,8 +387,8 @@ y(m+1) = y(k) + bb/2. + h/2.
 
 ! Lijeva stranica oklopa (ostatak) - od dolje prema gore
 do i = m+2,N2+m
-	x(i) = x(k)
-	y(i) = y(i-1) + bb
+    x(i) = x(k)
+    y(i) = y(i-1) + bb
 end do
 
 ! Gornji lijevi kut oklopa
@@ -399,8 +399,8 @@ y(n) = y(n-1) + bb/2. + h/2.
 ! Gornja stranica oklopa - od lijevo prema desno
 idelta = N1 + N2 + 2
 do i = n+1,N1+n
-	x(i) = x(i-idelta)
-	y(i) = y(k) + Ho - h
+    x(i) = x(i-idelta)
+    y(i) = y(k) + Ho - h
 end do
 
 ! Gornji desni kut oklopa
@@ -411,73 +411,73 @@ y(s) = y(s-1)
 ! Desna stranica oklopa - od dolje prema gore
 idelta = N1 + N2 + 2
 do i = s+1,N2+s
-	x(i) = x(m)
-	y(i) = y(i-idelta)
+    x(i) = x(m)
+    y(i) = y(i-idelta)
 end do
 
 if (tip==1) then
-	! Prva (lijeva) pregrada oklopa - od dolje prema gore
-	p = N2 + s
-	do i = p+1,N2+p
-		x(i) = Xo + Hx + h/2.
-		y(i) = y(i-N2)
-	end do
+    ! Prva (lijeva) pregrada oklopa - od dolje prema gore
+    p = N2 + s
+    do i = p+1,N2+p
+        x(i) = Xo + Hx + h/2.
+        y(i) = y(i-N2)
+    end do
 
-	! Druga pregrada oklopa - od dolje prema gore
-	q = N2 + p
-	do i = q+1,N2+q
-		x(i) = Xo + 2*Hx + h/2.
-		y(i) = y(i-N2)
-	end do
+    ! Druga pregrada oklopa - od dolje prema gore
+    q = N2 + p
+    do i = q+1,N2+q
+        x(i) = Xo + 2*Hx + h/2.
+        y(i) = y(i-N2)
+    end do
 end if
 
 ! ==============================================
 ! Izracun jedinicnog otpora dionih vodica oklopa
 ! ==============================================
 do i = k,Nuk
-	if (i==k) then
-		Sp = h*h
-		Rp(i) = L/(kapao*Sp)
+    if (i==k) then
+        Sp = h*h
+        Rp(i) = L/(kapao*Sp)
 
-	else if(i>k .and. i<=N1+k) then
-		Sp = aa*h
-		Rp(i) = L/(kapao*Sp)
+    else if(i>k .and. i<=N1+k) then
+        Sp = aa*h
+        Rp(i) = L/(kapao*Sp)
 
-	else if(i == m) then
-		Sp = h*h
-		Rp(i) = L/(kapao*Sp)
+    else if(i == m) then
+        Sp = h*h
+        Rp(i) = L/(kapao*Sp)
 
-	else if(i>m .and. i<=N2+m) then
-		Sp = bb*h
-		Rp(i) = L/(kapao*Sp)
+    else if(i>m .and. i<=N2+m) then
+        Sp = bb*h
+        Rp(i) = L/(kapao*Sp)
 
-	else if(i == n) then
-		Sp = h*h
-		Rp(i) = L/(kapao*Sp)
+    else if(i == n) then
+        Sp = h*h
+        Rp(i) = L/(kapao*Sp)
 
-	else if(i>n .and. i<=N1+n) then
-		Sp = aa*h
-		Rp(i) = L/(kapao*Sp)
+    else if(i>n .and. i<=N1+n) then
+        Sp = aa*h
+        Rp(i) = L/(kapao*Sp)
 
-	else if(i == s) then
-		Sp = h*h
-		Rp(i) = L/(kapao*Sp)
+    else if(i == s) then
+        Sp = h*h
+        Rp(i) = L/(kapao*Sp)
 
-	else if(i>s .and. i<=N2+s) then
-		Sp = bb*h
-		Rp(i) = L/(kapao*Sp)
-	end if
+    else if(i>s .and. i<=N2+s) then
+        Sp = bb*h
+        Rp(i) = L/(kapao*Sp)
+    end if
 
-	if (tip==1) then
-		if(i>p .and. i<=N2+p) then
-			Sp = bb*h
-			Rp(i) = L/(kapao*Sp)
+    if (tip==1) then
+        if(i>p .and. i<=N2+p) then
+            Sp = bb*h
+            Rp(i) = L/(kapao*Sp)
 
-		else if(i>q .and. i<=N2+q) then
-			Sp = bb*h
-			Rp(i) = L/(kapao*Sp)
-		end if
-	end if
+        else if(i>q .and. i<=N2+q) then
+            Sp = bb*h
+            Rp(i) = L/(kapao*Sp)
+        end if
+    end if
 end do
 
 write(2,'(" Duljina stranice (a) dionog vodica oklopa..:",f8.2," (mm)")') aa*1.e3
@@ -488,51 +488,51 @@ write(2,'(" Debljina oklopa ...........................:",f8.2," (mm)")') h*1.e3
 ! Formiranje matrice SGU svih dionih vodica faza i oklopa
 ! =======================================================
 do i = 1,Nu
-	d(i,i) = 0.2235*(a+b)
+    d(i,i) = 0.2235*(a+b)
 end do
 
 do i = k,Nuk
-	if (i==k) then
-		d(i,i) = 0.2235*(h+h)
+    if (i==k) then
+        d(i,i) = 0.2235*(h+h)
 
-	else if(i>k .and. i<=N1+k) then
-		d(i,i) = 0.2235*(aa+h)
+    else if(i>k .and. i<=N1+k) then
+        d(i,i) = 0.2235*(aa+h)
 
-	else if(i == m) then
-		d(i,i) = 0.2235*(h+h)
+    else if(i == m) then
+        d(i,i) = 0.2235*(h+h)
 
-	else if(i>m .and. i<=N2+m) then
-		d(i,i) = 0.2235*(bb+h)
+    else if(i>m .and. i<=N2+m) then
+        d(i,i) = 0.2235*(bb+h)
 
-	else if(i == n) then
-		d(i,i) = 0.2235*(h+h)
+    else if(i == n) then
+        d(i,i) = 0.2235*(h+h)
 
-	else if(i>n .and. i<=N1+n) then
-		d(i,i) = 0.2235*(aa+h)
+    else if(i>n .and. i<=N1+n) then
+        d(i,i) = 0.2235*(aa+h)
 
-	else if(i == s) then
-		d(i,i) = 0.2235*(h+h)
+    else if(i == s) then
+        d(i,i) = 0.2235*(h+h)
 
-	else if(i>s .and. i<=N2+s) then
-		d(i,i) = 0.2235*(bb+h)
-	end if
+    else if(i>s .and. i<=N2+s) then
+        d(i,i) = 0.2235*(bb+h)
+    end if
 
-	if (tip==1) then
-		if(i>p .and. i<=N2+p) then
-			d(i,i) = 0.2235*(bb+h)
+    if (tip==1) then
+        if(i>p .and. i<=N2+p) then
+            d(i,i) = 0.2235*(bb+h)
 
-		else if(i>q .and. i<=N2+q) then
-			d(i,i) = 0.2235*(bb+h)
-		end if
-	end if
+        else if(i>q .and. i<=N2+q) then
+            d(i,i) = 0.2235*(bb+h)
+        end if
+    end if
 end do
 
 do i = 1,Nuk
-	do j = i,Nuk
-		if (i/=j) then
-			d(i,j) = sqrt((x(i)-x(j))**2+(y(i)-y(j))**2)
-		end if
-	end do
+    do j = i,Nuk
+        if (i/=j) then
+            d(i,j) = sqrt((x(i)-x(j))**2+(y(i)-y(j))**2)
+        end if
+    end do
 end do
 
 ! ------------------------------------------------------------------
@@ -563,40 +563,40 @@ De = 658.d0*dsqrt(ro/f)
 ! Popunjavanje matrice impedancija:
 ! ---------------------------------
 do i = 1,Nuk
-	Re = Rp(i) + Konst1
-	Im = Konst2 * dlog(De/d(i,i))
-	zii = dcmplx(Re,Im)
+    Re = Rp(i) + Konst1
+    Im = Konst2 * dlog(De/d(i,i))
+    zii = dcmplx(Re,Im)
 
-	if (i<=Ni) then
-		Z(i,i) = zii + Zr
-	else if(i>Ni .and. i<=2*Ni) then
-		Z(i,i) = zii + Zs
-	else if(i>2*Ni .and. i<=3*Ni) then
-		Z(i,i) = zii + Zt
-	else
-		Z(i,i) = zii + Zuu
-	end if
+    if (i<=Ni) then
+        Z(i,i) = zii + Zr
+    else if(i>Ni .and. i<=2*Ni) then
+        Z(i,i) = zii + Zs
+    else if(i>2*Ni .and. i<=3*Ni) then
+        Z(i,i) = zii + Zt
+    else
+        Z(i,i) = zii + Zuu
+    end if
 end do
 
 DO i = 1,Nuk
-	do j = i,Nuk
-		IF (i/=j) THEN
-			Re = Konst1
-			Im = Konst2 * dlog(De/d(i,j))
-			zik = dcmplx(Re,Im)
-			if (i<=Ni .AND. j<=Ni) then
-				Z(i,j) = zik + Zr
-			else if ((i>Ni .and. i<=2*Ni) .AND. (j>Ni .and. j<=2*Ni)) then
-				Z(i,j) = zik + Zs
-			else if ((i>2*Ni .and. i<=3*Ni) .AND. (j>2*Ni .and. j<=3*Ni)) then
-				Z(i,j) = zik + Zt
-			else if (i>3*Ni .AND. j>3*Ni) then
-				Z(i,j) = zik + Zuu
-			else
-				Z(i,j) = zik
-			end if
-		END IF
-	end do
+    do j = i,Nuk
+        IF (i/=j) THEN
+            Re = Konst1
+            Im = Konst2 * dlog(De/d(i,j))
+            zik = dcmplx(Re,Im)
+            if (i<=Ni .AND. j<=Ni) then
+                Z(i,j) = zik + Zr
+            else if ((i>Ni .and. i<=2*Ni) .AND. (j>Ni .and. j<=2*Ni)) then
+                Z(i,j) = zik + Zs
+            else if ((i>2*Ni .and. i<=3*Ni) .AND. (j>2*Ni .and. j<=3*Ni)) then
+                Z(i,j) = zik + Zt
+            else if (i>3*Ni .AND. j>3*Ni) then
+                Z(i,j) = zik + Zuu
+            else
+                Z(i,j) = zik
+            end if
+        END IF
+    end do
 END DO
 
 ! -----------------------------
@@ -664,12 +664,12 @@ BA(:,NRHS) = V
 CALL ZSYSV(UPLO,MN,NRHS,Z,LDA,IPIV,BA,LDB,WORK,LWORK,INFO)
 
 if (INFO==0) then
-	write(*,'(" ZSYSV: Rjesenje sustava jednadzbi je u redu!")')
-	write(*,'(" Rezultati proracuna su u izlaznoj datoteci.")')
+    write(*,'(" ZSYSV: Rjesenje sustava jednadzbi je u redu!")')
+    write(*,'(" Rezultati proracuna su u izlaznoj datoteci.")')
 else
-	write(*,'(" Pogreska pri rjesavanju sustava jednadzbi!")')
-	write(*,'(" Kraj programa!")')
-	stop
+    write(*,'(" Pogreska pri rjesavanju sustava jednadzbi!")')
+    write(*,'(" Kraj programa!")')
+    stop
 end if
 
 ! -----------------------------
@@ -685,27 +685,27 @@ deallocate(IPIV)
 ! =========================================================
 Ifr = zero
 do i = 1,Ni
-	Ifr = Ifr + BA(i,NRHS)
+    Ifr = Ifr + BA(i,NRHS)
 end do
 
 Ifs = zero
 do i = Ni+1,2*Ni
-	Ifs = Ifs + BA(i,NRHS)
+    Ifs = Ifs + BA(i,NRHS)
 end do
 
 Ift = zero
 do i = 2*Ni+1,3*Ni
-	Ift = Ift + BA(i,NRHS)
+    Ift = Ift + BA(i,NRHS)
 end do
 
 Ifo = zero
 do i = 3*Ni+1,Nuk
-	Ifo = Ifo + BA(i,NRHS)
+    Ifo = Ifo + BA(i,NRHS)
 end do
 
 Iz = zero
 do i = 1,Nuk
-	Iz = Iz + BA(i,NRHS)
+    Iz = Iz + BA(i,NRHS)
 end do
 
 ! *********************************************************
@@ -768,32 +768,32 @@ write(2,'(" DS =",f12.2," +j",f12.2," (W)")') dreal(DS),dimag(DS)
 ! Donja stranica oklopa (ukljucuje i kuteve)
 I1 = zero
 do i = k,N1+k+1
-	I1 = I1 + BA(i,NRHS)
+    I1 = I1 + BA(i,NRHS)
 end do
 ! Lijeva stranica oklopa (bez kuteva)
 I2 = zero
 do i = m+1,N2+m
-	I2 = I2 + BA(i,NRHS)
+    I2 = I2 + BA(i,NRHS)
 end do
 ! Gornja stranica oklopa (ukljucuje i kuteve)
 I3 = zero
 do i = n,N1+n+1
-	I3 = I3 + BA(i,NRHS)
+    I3 = I3 + BA(i,NRHS)
 end do
 ! Desna stranica oklopa (bez kuteva)
 I4 = zero
 do i = s+1,N2+s
-	I4 = I4 + BA(i,NRHS)
+    I4 = I4 + BA(i,NRHS)
 end do
 ! Lijeva pregrada (bez kuteva)
 I5 = zero
 do i = p+1,N2+p
-	I5 = I5 + BA(i,NRHS)
+    I5 = I5 + BA(i,NRHS)
 end do
 ! Desna pregrada (bez kuteva)
 I6 = zero
 do i = q+1,N2+q
-	I6 = I6 + BA(i,NRHS)
+    I6 = I6 + BA(i,NRHS)
 end do
 
 write(2,'(/," -----------------------------------------------")')
@@ -818,22 +818,22 @@ write(2,'(" Desna  pregrada oklopa: I =",f10.3," (A) /",f6.1," (o)")') MOD,KUT
 ! ==============================================================
 Pr = 0.d0
 do i = 1,Ni
-	Pr = Pr + zabs(BA(i,NRHS))**2 * Rp(i)
+    Pr = Pr + zabs(BA(i,NRHS))**2 * Rp(i)
 end do
 
 Ps = 0.d0
 do i = Ni+1,2*Ni
-	Ps = Ps + zabs(BA(i,NRHS))**2 * Rp(i)
+    Ps = Ps + zabs(BA(i,NRHS))**2 * Rp(i)
 end do
 
 Pt = 0.d0
 do i = 2*Ni+1,3*Ni
-	Pt = Pt + zabs(BA(i,NRHS))**2 * Rp(i)
+    Pt = Pt + zabs(BA(i,NRHS))**2 * Rp(i)
 end do
 
 Po = 0.d0
 do i = 3*Ni+1,Nuk
-	Po = Po + zabs(BA(i,NRHS))**2 * Rp(i)
+    Po = Po + zabs(BA(i,NRHS))**2 * Rp(i)
 end do
 
 ! *********************************************************
